@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MatrixSum</title>
+</head>
+<body>
+    <script src='p5.min.js'></script>
+    <script>
+    var matrix1 = new Object();
+var matrix2 = new Object();
+var matrixSol = new Object();
+var lenghtMatrix;
+
+function setup() {
+  createCanvas(400, 400);
+
+  input = createInput("", "number");
+            input.position(20, 380);
+            input.size(50);
+            button = createButton("Add number");
+            button.position(80, 380);
+            button.mousePressed(addVal);
+}
+
+function showMatrix(matrix, x, y) {
+  let xInitial = x;
+  for (var i = 0; i < lenghtMatrix; i++) {
+    x = xInitial;
+    for (var j = 0; j < lenghtMatrix; j++) {
+      text(matrix[i][j], x, y);
+      x += 40;
+    }
+    y += 20;
+  }
+}
+
+function addVal() {
+  lenghtMatrix = input.value();
+  for (let i = 0; i < lenghtMatrix; i++) {
+    var row = new Object();
+
+    for (let j = 0; j < lenghtMatrix; j++) {
+      row[j] = floor(random(0, 100));
+    }
+
+    matrix1[i] = row;
+  }
+
+  for (let i = 0; i < lenghtMatrix; i++) {
+    var row = new Object();
+
+    for (let j = 0; j < lenghtMatrix; j++) {
+      row[j] = floor(random(0, 100));
+    }
+    matrix2[i] = row;
+  }
+}
+
+function add(m1, m2) {
+  for (let i = 0; i < lenghtMatrix; i++) {
+    var row = new Object();
+
+    for (let j = 0; j < lenghtMatrix; j++) {
+      row[j] = m1[i][j]+m2[i][j];
+    }
+
+    matrixSol[i] = row;
+  }
+}
+
+function draw() {
+  background(180);
+  showMatrix(matrix1, 20, 50);
+  showMatrix(matrix2, 210, 50);
+  add(matrix1, matrix2);
+  showMatrix(matrixSol, 20, 200);
+}
+
+    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js" ></script>
+
+</body>
+</html>
